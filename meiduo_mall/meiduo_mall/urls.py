@@ -16,8 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.http import HttpResponse
+
+def log(request):
+    #1. import
+    import logging
+    #2. create log machine
+    logger=logging.getLogger('django')
+    #3. use log machine method save log
+    logger.info('user login')
+    logger.warning('redis cache insuffient')
+    logger.error('the log is not exist')
+    logger.debug('~~~~~~~~~~~~')
+    return HttpResponse('log')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('log/', log),
 ]
 
 #test go
