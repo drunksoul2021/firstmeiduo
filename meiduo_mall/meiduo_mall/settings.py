@@ -79,8 +79,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST':'localhost',
         'PORT':3306,
-        'USER':'wesley',
-        'PASSWORD':'Xyz!1234',
+        'USER':'root',
+        'PASSWORD':'Sql!123456',
         'NAME': 'meiduo_mall',
     }
 }
@@ -190,3 +190,7 @@ LOGGING = {
         },
     }
 }
+
+#####################replace user model################################
+
+AUTH_USER_MODEL = 'users.User'
