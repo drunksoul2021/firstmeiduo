@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -33,6 +35,10 @@ from django.http import JsonResponse
 class UsernameCountView(View):
 
     def get(self,request,username):
+        # 1. recevie username judge username is_fulfill username rule
+        # if not re.match('[a-zA-Z0-9_-]{5,20}',username):
+        #     return JsonResponse({'code':200,'errmsg':'username is not fit for username rule'})
+
         # 2. query database
         count = User.objects.filter(username=username).count()
         # 3. return response

@@ -16,20 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from django.http import HttpResponse
+# from django.http import HttpResponse
+#
+# def log(request):
+    # #1. import
+    # import logging
+    # #2. create log machine
+    # logger=logging.getLogger('django')
+    # #3. use log machine method save log
+    # logger.info('user login')
+    # logger.warning('redis cache insuffient')
+    # logger.error('the log is not exist')
+    # logger.debug('~~~~~~~~~~~~')
+    # return HttpResponse('log')
 
-def log(request):
-    #1. import
-    import logging
-    #2. create log machine
-    logger=logging.getLogger('django')
-    #3. use log machine method save log
-    logger.info('user login')
-    logger.warning('redis cache insuffient')
-    logger.error('the log is not exist')
-    logger.debug('~~~~~~~~~~~~')
-    return HttpResponse('log')
 
+# register converter
+from utils.converters import UsernameConverter
+from django.urls import register_converter
+
+register_converter(UsernameConverter,'username')
 urlpatterns = [
     path('admin/', admin.site.urls),
     #import users app route
