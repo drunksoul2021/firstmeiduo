@@ -103,6 +103,17 @@ class RegisterView(View):
         # user.save()
         #User.objects.create(username=username,password=password,mobile=mobile)
         # above two ways can not encrypt, use the blow way
-        User.objects.create_user(username=username,password=password,mobile=mobile)
+        user = User.objects.create_user(username=username,password=password,mobile=mobile)
+        # status stay
+        from django.contrib.auth import login
+        login(request,user)
         # 5. return response
         return JsonResponse({'code':0,'errmsg':'ok'})
+
+
+"""
+如果需求是注册成功后即表示用户认证通过，那么此时可以在注册成功后实现状态保持(register success then logined)
+如果需求是注册成功后不表示用户认证通过，那么此时不用在注册成功后实现状态保持(register success ,login by yourself)
+"""
+
+
