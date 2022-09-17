@@ -9,6 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+# import sys
+# import os
+# sys.path.append(os.path.dirname(sys.path[0]))
+
+
 import os
 from pathlib import Path
 
@@ -38,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.users',
+    'apps.verifications',
+
+
+
     #CORS
     'corsheaders',
 ]
@@ -148,6 +157,13 @@ CACHES = {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     },
+    'code': {              # save seesion data
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/2',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    },
 }
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
@@ -210,5 +226,5 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 ############attention#################
-# get request do not need to add /
-# post request must add /
+# get request do not need to add '/'
+# post request must add '/'
